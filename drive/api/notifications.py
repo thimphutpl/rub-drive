@@ -104,7 +104,7 @@ def notify_share(entity_name, docperm_name):
         link =f"ims.rub.edu.bt/api/method/drive.api.product.accept_invite?key={key}&redirect={link}"
     else:
         create_notification(docshare.owner, docshare.user, "Share", entity, message)
-    link = "ims.rub.edu.bt"+link
+    # link = "ims.rub.edu.bt"+link
     send_share_email(docshare.user, message, link, entity.team, entity_type)
 
 
