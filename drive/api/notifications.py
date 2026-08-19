@@ -105,6 +105,7 @@ def notify_share(entity_name, docperm_name):
         frappe.throw(str(link))
     else:
         create_notification(docshare.owner, docshare.user, "Share", entity, message)
+    frappe.throw(str(link))
     send_share_email(docshare.user, message, link, entity.team, entity_type)
 
 
