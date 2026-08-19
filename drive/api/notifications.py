@@ -96,7 +96,8 @@ def notify_share(entity_name, docperm_name):
 
     author_full_name = frappe.db.get_value("User", {"name": docshare.owner}, ["full_name"])
     entity_type = "document" if entity.document else "folder" if entity.is_group else "file"
-    link = get_link(entity)
+    # link = get_link(entity)
+    link =f"ims.rub.edu.bt/api/method/drive.api.product.accept_invite?key={key}&redirect={link}"
     message = f'{author_full_name} shared a {entity_type} with you: "{entity.title}"'
     if not frappe.db.exists("User", docshare.user):
         key = frappe.get_value("Drive User Invitation", {"email": docshare.user})
