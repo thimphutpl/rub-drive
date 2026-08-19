@@ -101,7 +101,7 @@ def notify_share(entity_name, docperm_name):
     if not frappe.db.exists("User", docshare.user):
         key = frappe.get_value("Drive User Invitation", {"email": docshare.user})
         # link = frappe.utils.get_url(f"/api/method/drive.api.product.accept_invite?key={key}&redirect={link}")
-        link =f"ims.rub.edu.bt/api/method/drive.api.product.accept_invite?key={key}&redirect={link}"
+        link ="https://"+frappe.db.get_single_value("System Settings", "drive_domain")+f"api/method/drive.api.product.accept_invite?key={key}&redirect={link}"
     else:
         create_notification(docshare.owner, docshare.user, "Share", entity, message)
     link = "https://"+frappe.db.get_single_value("System Settings", "drive_domain")+link
