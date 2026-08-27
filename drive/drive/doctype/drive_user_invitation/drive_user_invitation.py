@@ -36,12 +36,14 @@ class DriveUserInvitation(Document):
             frappe.db.commit()
 
     def invite_via_email(self):
+        link ="https://"+frappe.db.get_single_value("System Settings", "drive_domain")+f"/api/method/drive.api.product.accept_invite?key={self.name}"
         frappe.sendmail(
             recipients=self.email,
             subject=f"Frappe Drive - Invitation",
             template="drive_invitation",
             args={
-                "invite_link": frappe.utils.get_url(f"/api/method/drive.api.product.accept_invite?key={self.name}"),
+                #"invite_link": frappe.utils.get_url(f"/api/method/drive.api.product.accept_invite?key={self.name}"),
+                "invite_link":link,
                 "user": frappe.session.user,
                 "team_name": frappe.db.get_value("Drive Team", self.team, "title"),
             },
