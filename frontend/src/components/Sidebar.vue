@@ -194,8 +194,7 @@ onMounted(() => {
 })
 
 function logout() {
-  store.dispatch("logout")
-  router.redirect("/")
+   window.location.href = "/login"
 }
 
 const sidebarItems = computed(() => {
